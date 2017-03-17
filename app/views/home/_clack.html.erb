@@ -1,0 +1,18 @@
+<p>
+
+<%= clack.content %> , <%= clack.user.username %> , <%= clack.created_at.to_formatted_s(:short) %>
+
+<br>
+
+<% if clack.likes.where(user_id: current_user.id).length > 0 %>
+	
+
+	<%= link_to "Unlike" , url_for(controller: :home, action: :like, clack_id: clack.id),method: :post %>
+
+<% else %>
+
+	<%= link_to "Like" ,url_for(controller: :home, action: :like, clack_id: clack.id), method: :post %>
+
+<% end %>
+
+</p>

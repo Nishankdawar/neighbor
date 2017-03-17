@@ -1,0 +1,15 @@
+<br>
+
+<%= form_tag '/create_clack' do %>
+
+	<%= text_area_tag :content %>
+
+<br>
+
+<%= submit_tag "Create clack" %>
+
+<% end %>
+
+<% @clacks.each do |clack| %>
+	<%= render 'clack', :clack => clack %>
+<% end %>
