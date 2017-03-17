@@ -6,11 +6,11 @@
 
 <% if clack.likes.where(user_id: current_user.id).length > 0 %>
 	
-
-	<%= link_to "Unlike" , url_for(controller: :home, action: :like, clack_id: clack.id),method: :post %>
+	<%= clack.likes.length %>
+	<%= link_to "Unlike" , url_for(controller: :home, action: :like, clack_id: clack.id), method: :post %>
 
 <% else %>
-
+	<%= clack.likes.length %>
 	<%= link_to "Like" ,url_for(controller: :home, action: :like, clack_id: clack.id), method: :post %>
 
 <% end %>

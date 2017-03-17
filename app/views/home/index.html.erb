@@ -2,14 +2,24 @@
 
 <%= form_tag '/create_clack' do %>
 
-	<%= text_area_tag :content %>
+		<%= text_area_tag :content %>
 
 <br>
-
-<%= submit_tag "Create clack" %>
+		<%= submit_tag "Create clack" %>
 
 <% end %>
 
+
+
+<%= form_tag '/', method: :get do %>
+
+    <%= text_field_tag 'search' %>
+    <br>
+    <%= submit_tag 'search' %>
+<% end %>
+
 <% @clacks.each do |clack| %>
+
 	<%= render 'clack', :clack => clack %>
+
 <% end %>

@@ -13,14 +13,13 @@ Rails.application.routes.draw do
 
   post '/create_clack' => 'home#create_clack'
   post '/like' => 'home#like'
-  # post '/follow' => 'home#follow'
-  post '/add_follow' => 'home#add_follow'
-  post '/remove_follow' => 'home#remove_follow'
+  post '/follow' => 'home#follow'
+
 
 
   get '/users' => 'home#users'
-  # get '/followers' => 'home#followers'
-  # get '/followees' => 'home#followees'
+  get '/followers' => 'home#followers'
+  get '/followees' => 'home#followees'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317032750) do
+ActiveRecord::Schema.define(version: 20170308163528) do
 
   create_table "clacks", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "likecount",  default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "clacks", ["user_id"], name: "index_clacks_on_user_id"
@@ -46,10 +45,8 @@ ActiveRecord::Schema.define(version: 20170317032750) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "followercount", default: 0
-    t.integer  "followeecount", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

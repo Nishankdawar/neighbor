@@ -1,0 +1,14 @@
+<%= user.username %>
+<% if user.followers.pluck(:id).include?(current_user.id) %>
+	
+	<%= user.followers.length %>
+	<%= user.followees.length %>
+    <%= link_to "Follow", url_for(controller: :home, action: :follow, followee_id: user.id), method: :post %>
+
+<% else %>
+	<%= user.followers.length %>
+	<%= user.followees.length %>
+    <%= link_to "Un Follow", url_for(controller: :home, action: :follow, followee_id: user.id), method: :post %>
+
+
+<% end %>

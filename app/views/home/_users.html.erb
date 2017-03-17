@@ -1,30 +1,10 @@
-	<% @all_users.each do |getuser| %>
-		<%if getuser.id == @users.id %>
-			<% next %>
-		<%end%>
-		<p><%= getuser.username %></p>
-		<% flag = true %>
-		<% if !@followlist %>
-			<form action="/add_follow" method="POST">
-				<input type="hidden" name="tofollowuserid" value="<%=getuser.id%>">
-				<input type="submit" value="Follow">
-			</form>
-			<%next%>
-		<% end %>
-		<% f = @followlist.count(:followee_id => getuser.id) %>
-		<% if f != 0 %>
-			<% flag = false %>
-		<% end %>
-		<% if flag %>
-			<form action="/add_follow" method="POST">
-				<input type="hidden" name="tofollowuserid" value="<%=getuser.id%>">
-				<input type="submit" value="Follow">
-			</form>
-		<%else%>
-			<form action="/remove_follow" method="POST">
-				<input type="hidden" name="tofollowuserid" value="<%=getuser.id%>">
-				<input type="submit" value="Unfollow">
-			</form>
-		<% end %>
-		<% puts '#####','',getuser.id,'',f,'','#####' %>
-	<%end%>
+<ul>
+  <% users.each do |user| %>
+
+      <li>
+        <%= render 'user', :user => user %>
+      </li>
+
+  <% end %>
+
+</ul>
