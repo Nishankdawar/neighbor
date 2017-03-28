@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   protect_from_forgery with: :exception
   helper_method :current_user, :user_signed_in?
-
+  
 
   def user_signed_in?
   	!session[:user_id].nil?
@@ -22,4 +22,13 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+#   def request_ip
+#   if Rails.env.development? 
+#        response = HTTParty.get('http://api.hostip.info/get_html.php')
+#        ip = response.split("\n")
+#        ip.last.gsub /IP:\s+/, ''      
+#      else
+#        request.remote_ip
+#      end 
+#   end
 end

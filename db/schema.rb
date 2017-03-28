@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308163528) do
+ActiveRecord::Schema.define(version: 20170326103811) do
 
   create_table "clacks", force: :cascade do |t|
     t.text     "content"
@@ -42,11 +42,23 @@ ActiveRecord::Schema.define(version: 20170308163528) do
   add_index "likes", ["clack_id"], name: "index_likes_on_clack_id"
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
-  create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password"
+  create_table "replies", force: :cascade do |t|
+    t.integer  "clack_id"
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "replies", ["clack_id"], name: "index_replies_on_clack_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username",   null: false
+    t.string   "password",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal  "lat"
+    t.decimal  "lng"
   end
 
 end

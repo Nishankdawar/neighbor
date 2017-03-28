@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/logout' => 'authentication#logout'
 
   post '/create_clack' => 'home#create_clack'
+  post '/delete_clack' => 'home#delete_clack'
+  post '/create_reply' => 'home#create_reply'
   post '/like' => 'home#like'
   post '/follow' => 'home#follow'
 

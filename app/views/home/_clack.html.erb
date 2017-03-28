@@ -1,6 +1,11 @@
 <p>
 
-<%= clack.content %> , <%= clack.user.username %> , <%= clack.created_at.to_formatted_s(:short) %>
+<%= clack.content %> , <%= clack.user.username %> , <%= clack.created_at.to_formatted_s(:short) %> 
+
+
+<br>
+
+
 
 <br>
 
@@ -14,5 +19,6 @@
 	<%= link_to "Like" ,url_for(controller: :home, action: :like, clack_id: clack.id), method: :post %>
 
 <% end %>
+
 
 </p>

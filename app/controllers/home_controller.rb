@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user
 
   def index
+    @replies = Reply.all
     @clacks = current_user.feed
     search = params[:search]
     if search
@@ -12,8 +13,28 @@ class HomeController < ApplicationController
   end
 
   def create_clack
+
     current_user.clacks.create(content: params[:content])
     return redirect_to '/'
+  end
+
+  def delete_clack
+    clack_id = params[:clack_id]
+    clack = current_user.clacks.where(id: clack_id).first
+    if clack
+      clack.destroy
+    end
+    redirect_to '/'
+  end
+
+  def create_reply
+
+     clack_id = params[:clack_id]
+     user_id = session[:user_id]
+     reply = params[:content]
+     clack = Clack.find(params[:clack_id])
+     clack.replies.create(user_id: user_id,content: reply)
+     return redirect_to '/'
   end
 
   def like
@@ -40,6 +61,7 @@ class HomeController < ApplicationController
 
   def users
     @users = User.where('id != ?', current_user.id)
+
   end
 
   def followers

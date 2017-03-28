@@ -1,22 +1,33 @@
 class AuthenticationController < ApplicationController
   
+
   def signup_get
   
   end
   
   def signup_get
 
+  end
+
+  def locate user
+
+        location = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
+        user.update(lat: location.lat, lng: location.lng)
+  
   end
 
   def signin
-  	username = params[:username]
+    username = params[:username]
   	password = params[:password]
 
   	user = User.find_by_username(username)
 
   	if user
   		if user.password == password
+        # location = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
+        # user.update(lat: location.lat, lng: location.lng)
   			session[:user_id] = user.id
+        locate user
   			return redirect_to '/'
   		else
   			return redirect_to '/signin'
@@ -30,13 +41,16 @@ class AuthenticationController < ApplicationController
   def signup
   	username = params[:username]
   	password = params[:password]
-
-  	user = User.find_by_username(username)
+    user = User.find_by_username(username)
 
   	unless user
   		user = User.create(username: username, password: password)
   		session[:user_id] = user.id
-  		return redirect_to '/'
+  		# location = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
+    #   byebug
+    #   user.update(lat: location.lat, lng: location.lng)
+      locate user
+      return redirect_to '/'
   	else
   		return redirect_to '/signup'
   	end
