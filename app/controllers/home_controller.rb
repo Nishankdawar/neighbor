@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
   
   before_action :authenticate_user
-
+  
   def index
-    @replies = Reply.all
+    clack_id = params[:clack_id]
+    puts '','','clack_id',clack_id,'clack_id','',''
+    @replies = Reply.where(clack_id: clack_id).all
     @clacks = current_user.feed
     search = params[:search]
     if search
@@ -13,9 +15,21 @@ class HomeController < ApplicationController
   end
 
   def create_clack
-
     current_user.clacks.create(content: params[:content])
     return redirect_to '/'
+  end
+
+  def show_reply
+    @show = params[:show]
+    puts '','','',@show,'','',''
+    if @show
+      @show = false
+      puts '','','',@show,'','',''
+      return redirect_to '/'
+    end
+    @show = true
+    return redirect_to '/'
+
   end
 
   def delete_clack
@@ -28,7 +42,6 @@ class HomeController < ApplicationController
   end
 
   def create_reply
-
      clack_id = params[:clack_id]
      user_id = session[:user_id]
      reply = params[:content]
@@ -64,6 +77,7 @@ class HomeController < ApplicationController
 
   end
 
+
   def followers
     @users = current_user.followers
   end
@@ -72,3 +86,5 @@ class HomeController < ApplicationController
     @users = current_user.followees
   end
 end
+
+

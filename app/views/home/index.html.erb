@@ -19,35 +19,22 @@
     <%= submit_tag 'search' %>
 <% end %>
 
+<br>
 
 <% @clacks.each do |clack| %>
-
 	<%= render 'clack', :clack => clack %>
-	<% @replies.each do |reply| %>
-
-	<%= render 'reply', :reply => reply %>
-	
+		<%= form_tag '/', method: :get do %>
+			<% puts '','','in view',clack.id,'in view','','' %>
+			<%= hidden_field_tag 'clack_id', clack.id %>
+			<%= submit_tag "Reply" %>
+		<% @replies.each do |reply| %>			
+			<%= render 'reply', :reply => reply %>
+		<% end %>
+	<% end %>
 <% end %>
 
 
-	<%= form_tag '/delete_clack' do %>
-
-		<%= hidden_field_tag "clack_id" , clack.id %>
-<br>
-		<%= submit_tag "Delete Clack" %>
-
-<% end %>
-
-
-	<%= form_tag '/create_reply' do %>
-		<%= text_area_tag :content %>
-		 <%= hidden_field_tag "clack_id", clack.id %>
-		<br>
-		<%= submit_tag "Reply" %>
-	<% end %> 
 
 
 
-
-<% end %>
 

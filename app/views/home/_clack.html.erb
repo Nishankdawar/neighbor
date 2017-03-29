@@ -5,7 +5,30 @@
 
 <br>
 
+	<%= form_tag '/create_reply' do %>
+		<%= text_area_tag :content %>
+		<%= hidden_field_tag "clack_id", clack.id %>
+		<%= submit_tag "Reply" %>
+	<% end %>
 
+<%= form_tag '/show_reply' do %>
+	<%= hidden_field_tag "show", false %>
+	<br>
+    <% if @show %>
+    <%= submit_tag "Hide Replies" %>
+    <% else %>
+    <%= submit_tag "Show Replies" %>
+<% end %>
+<% end %>
+
+
+<%= form_tag '/delete_clack' do %>
+
+		<%= hidden_field_tag "clack_id" , clack.id %>
+<br>
+		<%= submit_tag "Delete Clack" %>
+
+<% end %>
 
 <br>
 
