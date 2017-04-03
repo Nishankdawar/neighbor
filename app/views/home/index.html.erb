@@ -1,5 +1,14 @@
-<br>
 
+
+<div id="map"></div>
+<!-- Replace the value of the key parameter with your own API key. -->
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIpH6CcIE8oNRA8t6oPLkjGFWStWJlVik&callback=initMap">
+</script>
+
+
+<div>
+<br>
 <%= form_tag '/create_clack' do %>
 
 		<%= text_area_tag :content %>
@@ -23,15 +32,13 @@
 
 <% @clacks.each do |clack| %>
 	<%= render 'clack', :clack => clack %>
-		<%= form_tag '/', method: :get do %>
-			<% puts '','','in view',clack.id,'in view','','' %>
-			<%= hidden_field_tag 'clack_id', clack.id %>
-			<%= submit_tag "Reply" %>
-		<% @replies.each do |reply| %>			
+		<% clack.replies.each do |reply| %>			
 			<%= render 'reply', :reply => reply %>
 		<% end %>
-	<% end %>
+
 <% end %>
+
+</div>
 
 
 

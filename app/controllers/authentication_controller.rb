@@ -12,7 +12,8 @@ class AuthenticationController < ApplicationController
   def locate user
 
         location = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
-        user.update(lat: location.lat, lng: location.lng)
+        
+        user.update(lat: location.lat, lng: location.lng, latitude: location.lat, longitude: location.lng)
   
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326103811) do
+ActiveRecord::Schema.define(version: 20170401213305) do
 
   create_table "clacks", force: :cascade do |t|
     t.text     "content"
@@ -59,6 +59,11 @@ ActiveRecord::Schema.define(version: 20170326103811) do
     t.datetime "updated_at", null: false
     t.decimal  "lat"
     t.decimal  "lng"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "city"
+    t.string   "zipcode"
+    t.string   "country"
   end
 
 end

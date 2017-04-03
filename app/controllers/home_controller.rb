@@ -3,9 +3,6 @@ class HomeController < ApplicationController
   before_action :authenticate_user
   
   def index
-    clack_id = params[:clack_id]
-    puts '','','clack_id',clack_id,'clack_id','',''
-    @replies = Reply.where(clack_id: clack_id).all
     @clacks = current_user.feed
     search = params[:search]
     if search
@@ -19,24 +16,15 @@ class HomeController < ApplicationController
     return redirect_to '/'
   end
 
-  def show_reply
-    @show = params[:show]
-    puts '','','',@show,'','',''
-    if @show
-      @show = false
-      puts '','','',@show,'','',''
-      return redirect_to '/'
-    end
-    @show = true
-    return redirect_to '/'
-
-  end
-
   def delete_clack
     clack_id = params[:clack_id]
+    @replies = Reply.where(clack_id: clack_id).all
     clack = current_user.clacks.where(id: clack_id).first
     if clack
       clack.destroy
+      @replies.each do |reply|
+        reply.destroy
+      end
     end
     redirect_to '/'
   end

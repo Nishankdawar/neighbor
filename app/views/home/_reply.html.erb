@@ -1,5 +1,6 @@
-<p>
-
-<%= reply.content %> , <%= reply.created_at.to_formatted_s(:short) %>
+<p> 
+<% user_id = reply.user_id %>
+<% puts '','','',user_id, '','',''%>
+<%= reply.content %> ,  <%=  User.find(user_id).username %> , <%= reply.created_at.to_formatted_s(:short) %>
 	
 </p>
